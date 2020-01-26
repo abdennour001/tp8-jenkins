@@ -17,5 +17,26 @@ pipeline {
       }
     }
 
+    stage('Code Analysis') {
+      parallel {
+        stage('Code Analysis') {
+          steps {
+            withSonarQubeEnv('sonar') {
+              bat 'D:\\\\gradle-5.4.1\\\\bin\\\\gradle sonarqube'
+              waitForQualityGate true
+            }
+
+          }
+        }
+
+        stage('Test Reporting') {
+          steps {
+            jacoco()
+          }
+        }
+
+      }
+    }
+
   }
 }
