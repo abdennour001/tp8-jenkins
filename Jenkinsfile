@@ -11,5 +11,11 @@ pipeline {
       }
     }
 
+    stage('Mail Notification') {
+      steps {
+        mail(subject: 'Notification', body: 'Notification', cc: 'fa_amokrane@esi.dz', to: 'fa_amokrane@esi.dz')
+      }
+    }
+
   }
 }
