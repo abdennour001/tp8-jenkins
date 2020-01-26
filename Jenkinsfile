@@ -38,5 +38,17 @@ pipeline {
       }
     }
 
+    stage('Deployment') {
+      steps {
+        bat 'D:\\\\gradle-5.4.1\\\\bin\\\\gradle uploadArchives'
+      }
+    }
+
+    stage('Slack Notification') {
+      steps {
+        slackSend(message: 'The project was successfully deployed.')
+      }
+    }
+
   }
 }
