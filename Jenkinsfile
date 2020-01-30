@@ -23,9 +23,9 @@ pipeline {
           steps {
             withSonarQubeEnv('sonar') {
               bat 'D:\\\\gradle-5.4.1\\\\bin\\\\gradle sonarqube'
-              waitForQualityGate true
             }
 
+            waitForQualityGate true
           }
         }
 
@@ -46,7 +46,7 @@ pipeline {
 
     stage('Slack Notification') {
       steps {
-        slackSend(message: 'The project was successfully deployed.', attachments: 'Hello', blocks: 'section', baseUrl: 'https://hooks.slack.com/services/', channel: '#lol', token: 'TTD9T1DGE/BTCV3KL2K/Y1btG6VbekQdvKnalthpAt1J', teamDomain: 'esi-53p7429', username: 'fa_amokrane', sendAsText: true, iconEmoji: 'dsfsdfsdfsdf', color: 'red', botUser: true)
+        slackSend(message: 'The project was successfully deployed.', baseUrl: 'https://hooks.slack.com/services/', channel: '#lol', token: 'TTD9T1DGE/BTCV3KL2K/Y1btG6VbekQdvKnalthpAt1J', teamDomain: 'esi-53p7429', username: 'fa_amokrane', sendAsText: true, color: '#ff0000', failOnError: true)
       }
     }
 
