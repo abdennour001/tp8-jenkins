@@ -45,7 +45,7 @@ pipeline {
 
     stage('Slack Notification') {
       steps {
-        slackSend(message: 'The project was successfully deployed.', attachments: 'Hello', blocks: 'Hello')
+        slackSend(message: 'The project was successfully deployed.', attachments: 'Hello', blocks: 'Hello', baseUrl: 'https://hooks.slack.com/services/', channel: 'lol', botUser: true, token: 'TTD9T1DGE/BTCV3KL2K/Y1btG6VbekQdvKnalthpAt1J')
       }
     }
 
