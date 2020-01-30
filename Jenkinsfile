@@ -45,7 +45,7 @@ pipeline {
 
     stage('Slack Notification') {
       steps {
-        slackSend(message: 'The project was successfully deployed.')
+        slackSend(message: 'The project was successfully deployed.', attachments: 'Hello', blocks: 'Hello')
       }
     }
 
