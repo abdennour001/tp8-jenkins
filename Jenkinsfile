@@ -2,6 +2,9 @@ pipeline {
   agent any
   stages {
     stage('Build') {
+      when {
+      branch 'master'
+   }
       steps {
         bat(script: 'D:\\\\gradle-5.4.1\\\\bin\\\\gradle build', label: 'Hello gradle!')
         powershell 'D:\\\\gradle-5.4.1\\\\bin\\\\gradle javadoc'
@@ -12,12 +15,18 @@ pipeline {
     }
 
     stage('Mail Notification') {
+      when {
+      branch 'master'
+   }
       steps {
         mail(subject: 'Notification', body: 'Notification', to: 'fa_amokrane@esi.dz')
       }
     }
 
     stage('Code Analysis') {
+      when {
+      branch 'master'
+   }
       parallel {
         stage('Code Analysis') {
           steps {
