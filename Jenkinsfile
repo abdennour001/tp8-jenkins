@@ -31,7 +31,7 @@ pipeline {
 
         stage('Test Reporting') {
           steps {
-            jacoco()
+            jacoco(execPattern: 'build/jacoco/*.exec')
           }
         }
 
@@ -39,18 +39,18 @@ pipeline {
     }
 
     stage('Deployment') {
-            when {
-      branch 'master'
-   }
+      when {
+        branch 'master'
+      }
       steps {
         bat 'D:\\\\gradle-5.4.1\\\\bin\\\\gradle uploadArchives'
       }
     }
 
     stage('Slack Notification') {
-            when {
-      branch 'master'
-   }
+      when {
+        branch 'master'
+      }
       steps {
         slackSend(message: 'The project was successfully deployed.', baseUrl: 'https://hooks.slack.com/services/', channel: '#lol', token: 'TTD9T1DGE/BTCV3KL2K/Y1btG6VbekQdvKnalthpAt1J', teamDomain: 'esi-53p7429', username: 'fa_amokrane', sendAsText: true, color: '#ff0000', failOnError: true)
       }
